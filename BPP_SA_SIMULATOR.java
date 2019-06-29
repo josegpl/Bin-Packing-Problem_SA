@@ -83,7 +83,7 @@ public class BPP_SA_SIMULATOR {
 		}
 		sc.close();
 		//Mostra a forma como cada item foi armazenado em cada pacote
-		System.out.println();
+		/*System.out.println();
 		System.out.print("Tamanho it: "); //tamanho dos itens
 		for(int i=0; i<items.length; i++) {
 			System.out.print(items[i].size + " ");
@@ -93,7 +93,7 @@ public class BPP_SA_SIMULATOR {
 		for(int i=0; i<items.length; i++) { //armazenado em qual pacote
 		System.out.print(items[i].bin_no + " ");
 		}
-		System.out.println();
+		System.out.println();*/
 		int res = 0;
 		for(int i=0; i<items.length; i++) {
 			if(items[i].bin_no > res) {
