@@ -25,43 +25,26 @@ public class BPP_SA_SIMULATOR {
 		Random ran = new Random();
 		
 		
-		System.out.println("********  Simulator Start ********");
 		System.out.println();
 		
-		System.out.print("Insert Bin Capacity : ");
+		System.out.print("Inserir capacidade dos pacotes : ");
 		capacity = sc.nextInt();
 		sc.nextLine();
 		System.out.println();
 		
 		getInstances();
 		
-		//randomDataGenerator();
-		//manualDataGenerator();
 		
-
-	
-		System.out.print("Lower Bound : ");
-		System.out.println(calculateLowerBound());
-		System.out.println();
-		
+		//Solução aleatória inicial
 		FirstFitDecreasing ffd = new FirstFitDecreasing();
 		bin_capacity = ffd.getMinimumBins(items , capacity);
 		
 		for(int i=0;i<bin_capacity.length;i++){
 			System.out.print(bin_capacity[i] + "  ");
 		}
+		
 		System.out.println();
-		System.out.print("Num pacote: ");
-		for(int i=0; i<items.length; i++) {
-		System.out.print(items[i].bin_no + " ");
-		}
-		System.out.println();
-		System.out.print("Tamanho it: ");
-		for(int i=0; i<items.length; i++) {
-			System.out.print(items[i].size + " ");
-			}
-		System.out.println();
-		System.out.print("Insert No. Of Iteration (>=100): ");
+		System.out.print("Numero de iteracoes: (>=100): ");
 		iter = sc.nextInt();
 		
 		current_fx = F();
@@ -96,19 +79,21 @@ public class BPP_SA_SIMULATOR {
 			}
 		}
 		for(int i=0;i<bin_capacity.length;i++){
-			System.out.print(bin_capacity[i] + "  ");
+			System.out.print(bin_capacity[i] + "  "); //capacidade final restante de cada pacote
 		}
 		sc.close();
+		//Mostra a forma como cada item foi armazenado em cada pacote
 		System.out.println();
-		System.out.print("Num pacote: ");
-		for(int i=0; i<items.length; i++) {
-		System.out.print(items[i].bin_no + " ");
-		}
-		System.out.println();
-		System.out.print("Tamanho it: ");
+		System.out.print("Tamanho it: "); //tamanho dos itens
 		for(int i=0; i<items.length; i++) {
 			System.out.print(items[i].size + " ");
 			}
+		System.out.println();
+		System.out.print("Num pacote: ");
+		for(int i=0; i<items.length; i++) { //armazenado em qual pacote
+		System.out.print(items[i].bin_no + " ");
+		}
+		System.out.println();
 		int res = 0;
 		for(int i=0; i<items.length; i++) {
 			if(items[i].bin_no > res) {
@@ -116,7 +101,7 @@ public class BPP_SA_SIMULATOR {
 			}
 		}
 		res = res+1;
-		System.out.println("\nSolução: " + res);
+		System.out.println("\nSolução: " + res); //solução final encontrada em relação ao número de pacotes utilizados
 	}
 	
 	private static void swap11(){
@@ -240,51 +225,19 @@ public class BPP_SA_SIMULATOR {
 		return ans;
 	}
 	
-	private static void randomDataGenerator(){
-		Scanner sc = new Scanner(System.in);
-		Random ran = new Random();
-		
-		System.out.println("==> Random Data Generator");
-		
-		System.out.print("No. Of Items : ");
-		no_items = sc.nextInt();
-		items = new Item[no_items];
-		
-		for(int i=0;i<no_items;i++){
-			items[i] = new Item(ran.nextInt(capacity)+1);
-			System.out.print(items[i].size + "  ");
-		}
-		System.out.println();
-		System.out.println();
-	}
-	
-	private static void manualDataGenerator(){
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("==> Manual Data Generator");
-		
-		System.out.print("No. Of Items : ");
-		no_items = sc.nextInt();
-		items = new Item[no_items];
-		System.out.print("Insert Items' Size : ");
-		for(int i=0;i<no_items;i++){
-			items[i] = new Item(sc.nextInt());
-		}
-		System.out.println();
-	}
 	
 	private static void getInstances() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("==> Instance Generator");
 		
-		System.out.print("No. Of Items : ");
+		System.out.print("No. de itens : ");
 		no_items = sc.nextInt();
 		items = new Item[no_items];
 	
 		
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("inst3.txt"));
+			br = new BufferedReader(new FileReader("inst2.txt"));
 			String aux;
 			int size;
 			
@@ -310,20 +263,6 @@ public class BPP_SA_SIMULATOR {
 			}
 		}
 		
-		System.out.println();
-		System.out.print("Tamanho it: ");
-		for(int i=0; i<items.length; i++) {
-			System.out.print(items[i].size + " ");
-			}
-		
-	}
-	
-	private static int calculateLowerBound(){
-		int sum=0;
-		for(int i=0;i<no_items;i++){
-			sum+=items[i].size;
-		}
-		return (int)Math.ceil(sum/capacity);
 	}
 
 }
