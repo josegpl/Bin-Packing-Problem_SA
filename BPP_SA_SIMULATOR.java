@@ -24,6 +24,7 @@ public class BPP_SA_SIMULATOR {
 		Scanner sc = new Scanner(System.in);
 		Random ran = new Random();
 		
+		
 		System.out.println("********  Simulator Start ********");
 		System.out.println();
 		
@@ -32,31 +33,13 @@ public class BPP_SA_SIMULATOR {
 		sc.nextLine();
 		System.out.println();
 		
-		System.out.println("==> DATA Set :");
-		System.out.println("A> Random");
-		System.out.println("B> Manual");
-		System.out.print("Insert Choise : ");
-		int ch = sc.nextInt();
-		System.out.println();
-		System.out.print(ch);
-		
 		getInstances();
+		
 		//randomDataGenerator();
 		//manualDataGenerator();
 		
-		/*switch(ch){
-		case '1' | 'a' : 
-			randomDataGenerator();
-			break;
-		case '2' | 'b' :
-			manualDataGenerator();
-			break;
-		default :
-			System.out.println("Insert Valid Choice.");
-			sc.close();
-			return ;
-		}*/
-		
+
+	
 		System.out.print("Lower Bound : ");
 		System.out.println(calculateLowerBound());
 		System.out.println();
@@ -289,6 +272,7 @@ public class BPP_SA_SIMULATOR {
 		System.out.print("No. Of Items : ");
 		no_items = sc.nextInt();
 		items = new Item[no_items];
+	
 		
 		BufferedReader br = null;
 		try {
@@ -297,15 +281,18 @@ public class BPP_SA_SIMULATOR {
 			String number;
 			int size;
 			
+			int cont = 0;
 			while((aux = br.readLine()) != null ) {
-				//System.out.print(aux + " ");
+				
+				System.out.print(aux + " ");
 				//number = aux;
 				//System.out.print(number + " ");
-				size = Integer.valueOf(aux);
+				size = Integer.parseInt(aux);
 				System.out.println(size);
-				for(int i=0;i<no_items;i++){
-					items[i] = new Item(size);
-				}
+		
+				items[cont] = new Item(size);
+				cont++;	
+			
 			}
 		} catch(IOException e) {
 			e.printStackTrace();
