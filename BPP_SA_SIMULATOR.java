@@ -109,6 +109,14 @@ public class BPP_SA_SIMULATOR {
 		for(int i=0; i<items.length; i++) {
 			System.out.print(items[i].size + " ");
 			}
+		int res = 0;
+		for(int i=0; i<items.length; i++) {
+			if(items[i].bin_no > res) {
+				res = items[i].bin_no;
+			}
+		}
+		res = res+1;
+		System.out.println("\nSolução: " + res);
 	}
 	
 	private static void swap11(){
@@ -276,17 +284,14 @@ public class BPP_SA_SIMULATOR {
 		
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("inst1.txt"));
+			br = new BufferedReader(new FileReader("inst3.txt"));
 			String aux;
-			String number;
 			int size;
 			
 			int cont = 0;
 			while((aux = br.readLine()) != null ) {
 				
 				System.out.print(aux + " ");
-				//number = aux;
-				//System.out.print(number + " ");
 				size = Integer.parseInt(aux);
 				System.out.println(size);
 		
