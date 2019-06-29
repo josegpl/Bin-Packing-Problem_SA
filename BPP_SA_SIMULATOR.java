@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class BPP_SA_SIMULATOR {
 	
@@ -37,8 +40,9 @@ public class BPP_SA_SIMULATOR {
 		System.out.println();
 		System.out.print(ch);
 		
+		getInstances();
 		//randomDataGenerator();
-		manualDataGenerator();
+		//manualDataGenerator();
 		
 		/*switch(ch){
 		case '1' | 'a' : 
@@ -276,6 +280,50 @@ public class BPP_SA_SIMULATOR {
 			items[i] = new Item(sc.nextInt());
 		}
 		System.out.println();
+	}
+	
+	private static void getInstances() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("==> Instance Generator");
+		
+		System.out.print("No. Of Items : ");
+		no_items = sc.nextInt();
+		items = new Item[no_items];
+		
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader("inst1.txt"));
+			String aux;
+			String number;
+			int size;
+			
+			while((aux = br.readLine()) != null ) {
+				//System.out.print(aux + " ");
+				//number = aux;
+				//System.out.print(number + " ");
+				size = Integer.valueOf(aux);
+				System.out.println(size);
+				for(int i=0;i<no_items;i++){
+					items[i] = new Item(size);
+				}
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println();
+		System.out.print("Tamanho it: ");
+		for(int i=0; i<items.length; i++) {
+			System.out.print(items[i].size + " ");
+			}
+		
 	}
 	
 	private static int calculateLowerBound(){
